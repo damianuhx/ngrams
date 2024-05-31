@@ -1,0 +1,37 @@
+In diesem Ordner finden Sie sowohl den Sourcecode inkl. benötigter Dateien (Ordner "Projekt und Quellcode"), sowie das kompilierte ausführbare Programm (Ordner "Programm"). Für die genaue Funktionsweise, sowie Beispiele und Informationen zur Funktionsweise des Programmes resp. Kommentierung des Quellcodes konsultieren sie bitte die Datei "manpage ngram". Hier wird ganz kurz in ein paar Besipielschritten gezeigt, wie mit dem Programm "ngram" Wörter vorherzusagen und die Vorhersagequlität zu messen ist. Es befinden sich bereits Texte und Datenbanken im Ordner Programm, mit denen das Programm getestet werden kann. 
+
+Bei Fragen oder Problemen kontaktieren Sie mich bitte unter damian.h82@gmail.com!
+
+
+
+
+Um das Programm "ngram", das sich im Order "Programm befindet" zu testen gehen Sie am besten folgendermassen vor: 
+
+Starten Sie die Konsole und wechseln sie den Pfad zum Ort, an dem sich das Programm befindet. 
+Z.B.: > cd /Users/hansheiri/Wortvorhersage\ durch\ Ngramme/Programm 
+
+Schritt 1: 
+Erstellen einer Datenbank anhand eines Textes:
+./ngram "create" "Pfad eines Textes" "Pfad an dem die Datenbank gespeichert werden soll.
+Z.B.: > ./ngram "create" "text1.txt" "data1.txt"
+
+Schritt 2: 
+Sich Wortvorschläge geben lassen:
+./ngram "predict" "Text für den Wörter vorhergesagt werden sollen" "Pfad der Datenbank" "Pfad für eine Bufferdatei, an der der Text zwischengespeichert werden kann"
+Z.B.: > ./ngram "predict" "I want to know how to watch the " "data1.txt" "buffer.txt"
+
+Bitte beachten Sie, dass am Schluss der Zeichenkette ein Leerschlag steht falls Sie das nächste Wort vorgeschlagen haben möchten. Steht kein Leerzeichen werden nur Wörter vorgeschlagen, die sich mit dem letzten Eingegeben Wort decken. Folgende Anfrage wird nur cutscene vorschlagen.
+
+> ./ngram "predict" "I want to know how to watch the cut" "data1.txt" "10" "buffer.txt"
+
+
+Schritt 3:
+Wie Häufig in einem Text das korrekte Wort vorgeschlagen worden wäre lässt sich mit dem Modus "test" berechnen. Die Resultate werden fortlaufend in der Konsole ausgegeben:
+./ngram "test" "Pfad der Datenbank" "Pfad des Textes" 
+Z.B.: > ./ngram "test" "data1.txt" "text2.txt"
+
+Schritt 4:
+Wie viele Tastendrücke durch die Wortvorhersage eingespart werden könnten, lässt sich durch den Modus "advtest" berechnen. Auch hier werden die Resultate laufend in der Konsole ausgegeben. Dieser Modus ist langsamer als der "test"-Modus, da für jedes neue Zeichen erneut gesucht wird.
+./ngram "advtest" "Pfad der Datenbank" "Pfad des Textes" "Maximale Anzahl Wörter die Vorgeschlagen werden sollen"
+Z.B.: > ./ngram "advtest" "data1.txt" "text2.txt" "10"
+
